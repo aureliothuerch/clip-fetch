@@ -60,7 +60,7 @@ fn make_executable(_path: &Path) -> anyhow::Result<()> {
 
 fn fetch(url: &str, dest: &Path, gzipped: bool) -> anyhow::Result<()> {
     let resp = ureq::get(url).call()?;
-    let reader = resp.into_reader();
+    let reader = resp.into_body().into_reader();
 
     let tmp = dest.with_extension("part");
     let mut file = fs::File::create(&tmp)?;
