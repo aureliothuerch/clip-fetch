@@ -9,11 +9,11 @@ pub struct Quality {
 
 impl Quality {
     pub fn label(&self) -> String {
+        let mut s = format!("{}p", self.res);
         if self.fps > 30 {
-            format!("{}p{}", self.res, self.fps)
-        } else {
-            format!("{}p", self.res)
+            s += &self.fps.to_string();
         }
+        s
     }
 }
 
